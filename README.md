@@ -21,37 +21,36 @@ kubectl apply -f k8s/deployment.yaml
 # Verify the deployment
 kubectl get pods
 ```
-2. Installing the Corteza Script
-Copy the corteza/scripts/time_workflow.js file to your Corredor server's script directory.
+### 2. Installing the Corteza Script
 
-Trigger: Manual button in the TimeRecord module list view.
+Copy the `corteza/scripts/time_workflow.js` file to your Corredor server's script directory.
 
-Function: Calls the internal API and saves the timestamp into a new record.
+- **Trigger:** Manual button in the `TimeRecord` module list view.
+- **Function:** Calls the internal API and saves the timestamp into a new record.
 
-API Endpoints
+## API Endpoints
+
 The microservice exposes the following endpoints:
 
-Method  Path     Description
-GET     /time    Returns the current time in ISO 8601 format.
-GET     /health  Kubernetes Liveness Probe endpoint. Returns 200 OK.
+| Method | Path | Description |
+| :--- | :--- | :--- |
+| **GET** | `/time` | Returns the current time in ISO 8601 format. |
+| **GET** | `/health` | Kubernetes Liveness Probe endpoint. Returns 200 OK. |
 
-Tech Stack
-Backend: Go (Golang) with Gin Framework
+## Tech Stack
 
-Containerization: Docker
+- **Backend:** Go (Golang) with Gin Framework
+- **Containerization:** Docker
+- **Orchestration:** Kubernetes
+- **Automation:** Corteza Corredor (JavaScript)
 
-Orchestration: Kubernetes
+## Usage
 
-Automation: Corteza Corredor (JavaScript)
+1. Open **Corteza Compose**.
+2. Navigate to the **TimeMicroservice** namespace and the **TimeRecord** module.
+3. Click the automation button (e.g., *"Fetch Time from Microservice"*) in the toolbar.
+4. Refresh the list to see the newly created record with the current timestamp.
 
-Usage
-Open Corteza Compose.
-
-Navigate to the TimeMicroservice namespace and the TimeRecord module.
-
-Click the automation button (e.g., "Fetch Time from Microservice") in the toolbar.
-
-Refresh the list to see the newly created record with the current timestamp.
 
 
 
