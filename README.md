@@ -20,7 +20,7 @@ kubectl apply -f k8s/deployment.yaml
 
 # Verify the deployment
 kubectl get pods
-```bash
+```
 2. Installing the Corteza Script
 Copy the corteza/scripts/time_workflow.js file to your Corredor server's script directory.
 
@@ -52,4 +52,5 @@ Navigate to the TimeMicroservice namespace and the TimeRecord module.
 Click the automation button (e.g., "Fetch Time from Microservice") in the toolbar.
 
 Refresh the list to see the newly created record with the current timestamp.
+
 
