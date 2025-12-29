@@ -23,7 +23,7 @@ kubectl get pods
 ```
 ### 2. Installing the Corteza Script
 
-Copy the `corteza/scripts/time_workflow.js` file to your Corredor server's script directory.
+Copy the `corteza/scripts/TimeMicroservice.js` file to your Corredor server's script directory.
 
 - **Trigger:** Manual button in the `TimeRecord` module list view.
 - **Function:** Calls the internal API and saves the timestamp into a new record.
@@ -50,6 +50,7 @@ The microservice exposes the following endpoints:
 2. Navigate to the **TimeMicroservice** namespace and the **TimeRecord** module.
 3. Click the automation button (e.g., *"Fetch Time from Microservice"*) in the toolbar.
 4. Refresh the list to see the newly created record with the current timestamp.
+
 
 
 
