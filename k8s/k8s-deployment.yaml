@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: time-microservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: time-microservice
+  template:
+    metadata:
+      labels:
+        app: time-microservice
+    spec:
+      containers:
+      - name: time-microservice
+        image: ocsenasbence/myserver:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: time-microservice-service
+spec:
+  selector:
+    app: time-microservice
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP
