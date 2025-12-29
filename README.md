@@ -48,10 +48,5 @@ The microservice exposes the following endpoints:
 
 1. Open **Corteza Compose**.
 2. Navigate to the **TimeMicroservice** namespace and the **TimeRecord** module.
-3. Click the automation button (e.g., *"Fetch Time from Microservice"*) in the toolbar.
+3. Click the automation button in the toolbar.
 4. Refresh the list to see the newly created record with the current timestamp.
-
-
-
-
-
