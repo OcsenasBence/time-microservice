@@ -36,6 +36,7 @@ The microservice exposes the following endpoints:
 | :--- | :--- | :--- |
 | **GET** | `/time` | Returns the current time in ISO 8601 format. |
 | **GET** | `/health` | Kubernetes Liveness Probe endpoint. Returns 200 OK. |
+| **POST** | `/process` | Processes input text payload and returns a structured JSON response. |
 
 ## Tech Stack
 
@@ -48,5 +49,5 @@ The microservice exposes the following endpoints:
 
 1. Open **Corteza Compose**.
 2. Navigate to the **TimeMicroservice** namespace and the **TimeRecord** module.
-3. Click the automation button in the toolbar.
-4. Refresh the list to see the newly created record with the current timestamp.
+3. Click on the automation button in the toolbar.
+4. Refresh the list to see the newly created record with the current timestamp and the processed text.
