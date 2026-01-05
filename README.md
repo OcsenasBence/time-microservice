@@ -1,6 +1,6 @@
 # Time Microservice & Corteza Integration
 
-This project implements a Go-based microservice that provides the current time and integrates with the Corteza Low-Code platform via a Corredor server automation script.
+This project implements a Go-based microservice that provides the current time, performs text processing and integrates with the Corteza Low-Code platform via a Corredor server automation script.
 
 ## Project Structure
 
