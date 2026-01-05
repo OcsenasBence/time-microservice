@@ -1,52 +1,23 @@
 export default {
-  label: "Idő Lekérése Microservice-ből",
-  description: "Meghívja a Go szervert és elmenti az időt a TimeRecord modulba",
-
+  label: "Idő és Feldolgozás",
   triggers({ on }) {
-    return on('manual')
-      .for('compose:module')
-      .uiProp('app', 'compose')
-      .where('module', 'timerecord')
-      .where('namespace', 'timemicroservice')
+    return on('manual').for('compose:module').uiProp('app', 'compose');
   },
 
-  async exec(args, { Compose }) {
-    const endpointUrl = 'http://time-microservice-service/time';
+  async exec({ module }, { Compose }) {
+    const timeRes = await fetch('http://time-microservice-service/time');
+    const { current_time } = await timeRes.json();
 
-    console.log(`[TimeWorkflow] Lekérés indítása ide: ${endpointUrl}`);
+    const procRes = await fetch('http://time-microservice-service/process', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: "teszt adat" })
+    });
+    const { processed } = await procRes.json();
 
-    let responseData;
-
-    try {
-      const response = await fetch(endpointUrl, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-      });
-
-      if (!response.ok) {
-        throw new Error(`Hiba a szerver válaszában: ${response.status}`);
-      }
-
-      responseData = await response.json();
-      console.log(`[TimeWorkflow] Kapott idő: ${responseData.current_time}`);
-
-    } catch (e) {
-      console.error('[TimeWorkflow] Hiba a lekérésnél:', e);
-      throw e;
-    }
-
-    try {
-        const newRecord = await Compose.makeRecord({
-            time: responseData.current_time
-        }, args.module);
-
-        await Compose.saveRecord(newRecord);
-        console.log('[TimeWorkflow] Rekord sikeresen mentve!');
-        return;
-
-    } catch (e) {
-        console.error('[TimeWorkflow] Hiba a mentésnél:', e);
-        throw e;
-    }
+    await Compose.saveRecord(await Compose.makeRecord({
+      time: current_time,
+      result: processed
+    }, module));
   }
 };
