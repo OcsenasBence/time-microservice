@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: corteza-env-config
+  namespace: default
+data:
+  TIME_SERVICE_URL: "http://time-microservice-service"

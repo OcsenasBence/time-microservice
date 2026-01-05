@@ -5,10 +5,12 @@ export default {
   },
 
   async exec({ module }, { Compose }) {
-    const timeRes = await fetch('http://time-microservice-service/time');
+    const baseUrl = process.env.TIME_SERVICE_URL;
+
+    const timeRes = await fetch(`${baseUrl}/time`);
     const { current_time } = await timeRes.json();
 
-    const procRes = await fetch('http://time-microservice-service/process', {
+    const procRes = await fetch(`${baseUrl}/process`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: "teszt adat" })
