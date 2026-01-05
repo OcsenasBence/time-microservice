@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
       - name: time-microservice
-        image: ocsenasbence/myserver:latest
-        imagePullPolicy: Always
+        image: ocsenasbence/myserver:v1.0.0
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
 ---
@@ -31,3 +31,11 @@ spec:
       port: 80
       targetPort: 8080
   type: ClusterIP
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: corteza-env-config
+  namespace: default
+data:
+  TIME_SERVICE_URL: "http://time-microservice-service"
